@@ -1,0 +1,24 @@
+def insert_at_bottom(stack, element):
+    if not stack:
+        stack.append(element)
+    else:
+        top_element = stack.pop()
+        insert_at_bottom(stack, element)
+        stack.append(top_element)
+
+def reverse_stack(stack):
+    if len(stack) <= 1:
+        return
+    top_element = stack.pop()
+    reverse_stack(stack)
+    insert_at_bottom(stack, top_element)
+
+# Example 1
+stack1 = [3, 2, 1, 7, 6]
+reverse_stack(stack1)
+print(stack1)  # Output: [6, 7, 1, 2, 3]
+
+# Example 2
+stack2 = [4, 3, 9, 6]
+reverse_stack(stack2)
+print(stack2)  # Output: [6, 9, 3, 4]

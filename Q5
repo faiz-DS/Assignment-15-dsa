@@ -1,0 +1,15 @@
+def reverse_string_using_stack(S):
+    stack = []
+    for char in S:
+        stack.append(char)
+    
+    reversed_string = ""
+    while stack:
+        reversed_string += stack.pop()
+    
+    return reversed_string
+
+# Example
+input_str = "GeeksforGeeks"
+output_str = reverse_string_using_stack(input_str)
+print(output_str)  # Output: skeeGrofskeeG

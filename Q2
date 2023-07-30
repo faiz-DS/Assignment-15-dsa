@@ -1,0 +1,26 @@
+def find_nearest_smaller_elements(arr):
+    stack = []
+    result = []
+    
+    for num in arr:
+        while stack and stack[-1] >= num:
+            stack.pop()
+        
+        if not stack:
+            result.append(-1)
+        else:
+            result.append(stack[-1])
+        
+        stack.append(num)
+    
+    return result
+
+# Example 1
+arr1 = [1, 6, 2]
+output1 = find_nearest_smaller_elements(arr1)
+print(output1)  # Output: [-1, 1, 1]
+
+# Example 2
+arr2 = [1, 5, 0, 3, 4, 5]
+output2 = find_nearest_smaller_elements(arr2)
+print(output2)  # Output: [-1, 1, -1, 0, 3, 4]

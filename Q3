@@ -1,0 +1,42 @@
+from queue import Queue
+
+class StackUsingQueues:
+    def __init__(self):
+        self.q1 = Queue()
+        self.q2 = Queue()
+
+    def push(self, value):
+        self.q1.put(value)
+
+    def pop(self):
+        while self.q1.qsize() > 1:
+            self.q2.put(self.q1.get())
+        if not self.q1.empty():
+            popped_element = self.q1.get()
+            self.q1, self.q2 = self.q2, self.q1
+            return popped_element
+        return -1  # Stack is empty
+
+    def top(self):
+        while self.q1.qsize() > 1:
+            self.q2.put(self.q1.get())
+        if not self.q1.empty():
+            top_element = self.q1.queue[0]  # Get the front element without dequeuing
+            self.q2.put(self.q1.get())  # Move the element to the second queue
+            self.q1, self.q2 = self.q2, self.q1
+            return top_element
+        return -1  # Stack is empty
+
+# Example 1
+stack1 = StackUsingQueues()
+stack1.push(2)
+stack1.push(3)
+print(stack1.pop())  # Output: 3
+stack1.push(4)
+print(stack1.pop())  # Output: 4
+
+# Example 2
+stack2 = StackUsingQueues()
+stack2.push(2)
+print(stack2.pop())  # Output: 2
+print(stack2.pop())  # Output: -1 (Stack is empty)
